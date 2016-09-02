@@ -1,0 +1,14 @@
+{
+    "name":"servicechaindb",
+    
+    "owner":"servicechainSvc",
+    
+    "authorization":"private",
+    
+    "allowread":
+    [
+        "servicechainSvc"
+    ]
+}
+
+
