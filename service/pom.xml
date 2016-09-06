@@ -23,7 +23,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.openo.sdno.overlayvpn</groupId>
+            <groupId>org.openo.sdno.overlay</groupId>
             <artifactId>org.openo.sdno.overlayvpn-cbb</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <type>jar</type>
@@ -42,6 +42,7 @@
         <dependency>
             <groupId>org.eclipse.jetty.orbit</groupId>
             <artifactId>javax.servlet</artifactId>
+            <version>3.0.0.v201112011016</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
