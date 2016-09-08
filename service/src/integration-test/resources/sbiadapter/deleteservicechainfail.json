@@ -1,0 +1,25 @@
+{
+    "request": {
+        "uri": "/openoapi/sbi-servicechain/v1/paths/[a-zA-Z0-9\\-\\_]{1,36}",
+        "method": "delete",
+        "headers": {
+            "Content-Type": "application/json;charset=UTF-8"
+        }
+    },
+    "response": {
+        "status": 500,
+        "json": {
+            "errorCode": "overlayvpn.operation.failed",
+            "descArg": "",
+            "reasonArg": "",
+            "detailArg": "",
+            "adviceArg": "",
+            "httpCode": 500,
+            "message": "",
+            "smallErrorCodeList": null,
+            "successed": null,
+            "fail": null,
+            "data": null
+        }
+    }
+}

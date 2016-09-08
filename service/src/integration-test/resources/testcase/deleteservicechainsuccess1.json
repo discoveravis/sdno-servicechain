@@ -1,0 +1,13 @@
+{
+    "request": {
+        "uri": "/openoapi/sdnoservicechain/v1/paths/{uuid}",
+        "method": "delete",
+        "headers": {
+            "Content-Type": "application/json;charset=UTF-8"
+        }
+    },
+    "response": {
+        "status": 200,
+        "json": null
+    }
+}

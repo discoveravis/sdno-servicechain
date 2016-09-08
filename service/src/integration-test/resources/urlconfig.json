@@ -1,0 +1,14 @@
+[
+    {
+        "url": "/openoapi/sdnomss/v1",
+        "prefix": "/org.openo.sdno.mss.service"
+    },
+    {
+        "url": "/sdnobrs/v1",
+        "prefix": "/org.openo.sdno.brs"
+    },
+    {
+        "url": "/openoapi/sdnoservicechain/v1",
+        "prefix": "/org.openo.sdno.servicechainservice"
+    }
+]

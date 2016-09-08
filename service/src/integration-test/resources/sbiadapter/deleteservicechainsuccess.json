@@ -1,0 +1,15 @@
+{
+    "request": {
+        "uri": "/openoapi/sbi-servicechain/v1/paths/[a-zA-Z0-9\\-\\_]{1,36}",
+        "method": "delete",
+        "headers": {
+            "Content-Type": "application/json;charset=UTF-8"
+        }
+    },
+    "response": {
+        "status": 200,
+        "json":   {
+            "id": "servicechainId1"
+        } 
+    }
+}
