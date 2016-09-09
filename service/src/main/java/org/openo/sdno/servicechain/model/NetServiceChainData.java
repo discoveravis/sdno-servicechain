@@ -22,8 +22,6 @@ import org.openo.sdno.overlayvpn.model.uuid.AbstUuidModel;
 
 /**
  * NetServiceChainData class.<br>
- * <p>
- * </p>
  * 
  * @author
  * @version SDNO 0.5 Sep 1, 2016
