@@ -11,16 +11,6 @@
     <artifactId>org.openo.sdno.servicechainservice</artifactId>
     <packaging>war</packaging>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <swagger-core-version>1.5.0</swagger-core-version>
-        <bsp-framework-version>3.0.0-SNAPSHOT</bsp-framework-version>
-        <springfwk.version>3.1.0.RELEASE</springfwk.version>
-        <springfwk.ex.version>3.1.0.RELEASE.fixed.3500</springfwk.ex.version>
-        <cxf.version>3.1.6</cxf.version>
-        <slf4j.version>1.6.1</slf4j.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.openo.sdno.overlay</groupId>
@@ -129,5 +119,9 @@
             <version>1.12</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>${package.name}</finalName>
+    </build>
 
 </project>

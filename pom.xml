@@ -15,13 +15,14 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <commonbiz.version>1.0.1</commonbiz.version>
+        <swagger-core-version>1.5.0</swagger-core-version>
+        <bsp-framework-version>3.0.0-SNAPSHOT</bsp-framework-version>
+        <springfwk.version>3.1.0.RELEASE</springfwk.version>
+        <springfwk.ex.version>3.1.0.RELEASE.fixed.3500</springfwk.ex.version>
         <cxf.version>3.1.6</cxf.version>
-        <package.name>org.openo.sdno.servicechainservice</package.name>
+        <slf4j.version>1.6.1</slf4j.version>
+        <package.name>servicechainservice</package.name>
     </properties>
-
-    <scm>
-        <tag>HEAD</tag>
-    </scm>
 
     <modules>
         <module>service</module>
