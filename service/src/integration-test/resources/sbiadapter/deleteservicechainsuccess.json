@@ -8,8 +8,5 @@
     },
     "response": {
         "status": 200,
-        "json":   {
-            "id": "servicechainId1"
-        } 
     }
 }

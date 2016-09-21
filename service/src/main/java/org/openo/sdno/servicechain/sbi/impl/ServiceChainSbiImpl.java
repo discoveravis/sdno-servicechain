@@ -17,6 +17,8 @@
 package org.openo.sdno.servicechain.sbi.impl;
 
 import java.text.MessageFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,6 +54,8 @@ public class ServiceChainSbiImpl implements ServiceChainSbiService {
 
     public static final String SERVICECHAIN_ADAPTER_BASE_URL = "/openoapi/sbi-servicechain/v1/paths";
 
+    private static final String SERVICE_CHAIN_PATH_KEY = "serviceChainPath";
+
     private static final int TIMEOUT = 300;
 
     @Override
@@ -61,7 +65,10 @@ public class ServiceChainSbiImpl implements ServiceChainSbiService {
         RestfulParametes restfulParametes = new RestfulParametes();
         restfulParametes.putHttpContextHeader("Content-Type", "application/json;charset=UTF-8");
 
-        restfulParametes.setRawData(JsonUtil.toJson(sfp));
+        Map<String, NetServiceChainPath> netServiceChainPathMap = new HashMap<String, NetServiceChainPath>();
+        netServiceChainPathMap.put(SERVICE_CHAIN_PATH_KEY, sfp);
+
+        restfulParametes.setRawData(JsonUtil.toJson(netServiceChainPathMap));
 
         RestfulOptions restOptions = new RestfulOptions();
         restOptions.setRestTimeout(TIMEOUT);

@@ -16,6 +16,8 @@
 
 package org.openo.sdno.servicechain.rest;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +30,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.lang3.StringUtils;
+import org.codehaus.jackson.type.TypeReference;
 import org.openo.baseservice.remoteservice.exception.ServiceException;
+import org.openo.baseservice.util.RestUtils;
+import org.openo.sdno.framework.container.util.JsonUtil;
 import org.openo.sdno.overlayvpn.consts.HttpCode;
 import org.openo.sdno.overlayvpn.errorcode.ErrorCode;
 import org.openo.sdno.overlayvpn.model.common.enums.ActionStatus;
@@ -55,6 +61,8 @@ public class ServiceChainSvcRoaResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceChainSvcRoaResource.class);
 
+    private static final String SERVICE_CHAIN_PATH_KEY = "serviceChainPath";
+
     @Resource
     private ServiceChainService serviceChainService;
 
@@ -71,7 +79,6 @@ public class ServiceChainSvcRoaResource {
      * 
      * @param req HttpServletRequest
      * @param resp HttpServletResponse
-     * @param serviceChainPath The object to add
      * @return ResultRsp
      * @throws ServiceException When create failed
      * @since SDNO 0.5
@@ -79,9 +86,25 @@ public class ServiceChainSvcRoaResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public ResultRsp<ServiceChainPathRsp> create(@Context HttpServletRequest req, @Context HttpServletResponse resp,
-            ServiceChainPath serviceChainPath) throws ServiceException {
+    public ResultRsp<ServiceChainPathRsp> create(@Context HttpServletRequest req, @Context HttpServletResponse resp)
+            throws ServiceException {
         long infterEnterTime = System.currentTimeMillis();
+
+        // get request data
+        String requestBody = RestUtils.getRequestBody(req);
+        if(StringUtils.isEmpty(requestBody)) {
+            LOGGER.error("Request body is null");
+            throw new ServiceException("Request body is null");
+        }
+
+        Map<String, ServiceChainPath> serviceChainPathMap =
+                JsonUtil.fromJson(requestBody, new TypeReference<Map<String, ServiceChainPath>>() {});
+        if(null == serviceChainPathMap || null == serviceChainPathMap.get(SERVICE_CHAIN_PATH_KEY)) {
+            LOGGER.error("No service chain path data in request");
+            throw new ServiceException("No service chain path data in request");
+        }
+
+        ServiceChainPath serviceChainPath = serviceChainPathMap.get(SERVICE_CHAIN_PATH_KEY);
 
         String sfpUuid = serviceChainPath.getUuid();
 

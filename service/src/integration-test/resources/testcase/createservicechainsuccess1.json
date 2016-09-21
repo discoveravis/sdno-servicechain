@@ -1,12 +1,14 @@
 {
-    "request": {        
+    "request": {
         "uri": "/openoapi/sdnoservicechain/v1/paths",
         "method": "post",
         "headers": {
             "Content-Type": "application/json;charset=UTF-8"
         },
         "json": {
-            "id": "servicechainId1"
+            "serviceChainPath" : {
+                "id": "servicechainId1"
+            }
         }
     },
     "response": {
