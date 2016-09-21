@@ -120,7 +120,7 @@ public class ServiceChainSvcImpl implements ServiceChainService {
         List<NetServicePathHop> neSph = new ArrayList<>();
         List<NetServiceClassifer> neSc = new ArrayList<>();
 
-        List<ServicePathHop> sphList = scp.getServicePathHop();
+        List<ServicePathHop> sphList = scp.getServicePathHops();
         if(null != sphList) {
             for(ServicePathHop sph : sphList) {
                 NetServicePathHop tmp = new NetServicePathHop();
@@ -144,7 +144,7 @@ public class ServiceChainSvcImpl implements ServiceChainService {
             }
         }
 
-        neScp.setServicePathHop(neSph);
+        neScp.setServicePathHops(neSph);
         neScp.setClassifiers(neSc);
     }
 }
