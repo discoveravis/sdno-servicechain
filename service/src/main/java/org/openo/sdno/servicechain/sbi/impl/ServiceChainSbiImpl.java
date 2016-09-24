@@ -25,7 +25,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.codehaus.jackson.type.TypeReference;
 import org.openo.baseservice.remoteservice.exception.ServiceException;
-import org.openo.baseservice.roa.util.restclient.RestfulOptions;
 import org.openo.baseservice.roa.util.restclient.RestfulParametes;
 import org.openo.baseservice.roa.util.restclient.RestfulResponse;
 import org.openo.sdno.exception.HttpCode;
@@ -56,8 +55,6 @@ public class ServiceChainSbiImpl implements ServiceChainSbiService {
 
     private static final String SERVICE_CHAIN_PATH_KEY = "serviceChainPath";
 
-    private static final int TIMEOUT = 300;
-
     @Override
     public ResultRsp<NetServiceChainPathRsp> create(HttpServletRequest req, HttpServletResponse resp,
             NetServiceChainPath sfp) throws ServiceException {
@@ -70,8 +67,6 @@ public class ServiceChainSbiImpl implements ServiceChainSbiService {
 
         restfulParametes.setRawData(JsonUtil.toJson(netServiceChainPathMap));
 
-        RestfulOptions restOptions = new RestfulOptions();
-        restOptions.setRestTimeout(TIMEOUT);
         RestfulResponse response = RestfulProxy.post(SERVICECHAIN_ADAPTER_BASE_URL, restfulParametes);
 
         if(response.getStatus() == HttpCode.NOT_FOUND) {
@@ -90,9 +85,7 @@ public class ServiceChainSbiImpl implements ServiceChainSbiService {
 
         String url = MessageFormat.format(SERVICECHAIN_ADAPTER_BASE_URL + "/{0}", uuid);
 
-        RestfulOptions restOptions = new RestfulOptions();
-        restOptions.setRestTimeout(TIMEOUT);
-        RestfulResponse response = RestfulProxy.delete(url, restfulParametes, restOptions);
+        RestfulResponse response = RestfulProxy.delete(url, restfulParametes);
 
         if(response.getStatus() == HttpCode.NOT_FOUND) {
             return new ResultRsp<NetServiceChainPathRsp>(ErrorCode.RESTFUL_COMMUNICATION_FAILED, null, null,
