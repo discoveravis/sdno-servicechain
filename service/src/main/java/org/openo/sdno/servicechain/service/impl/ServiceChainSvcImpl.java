@@ -24,7 +24,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.openo.baseservice.remoteservice.exception.ServiceException;
-import org.openo.sdno.framework.container.util.UuidUtils;
 import org.openo.sdno.overlayvpn.errorcode.ErrorCode;
 import org.openo.sdno.overlayvpn.model.common.enums.ActionStatus;
 import org.openo.sdno.overlayvpn.model.netmodel.servicechain.NetServiceChainPath;
@@ -110,7 +109,7 @@ public class ServiceChainSvcImpl implements ServiceChainService {
     }
 
     private void buildNetServiceChainPath(NetServiceChainPath neScp, ServiceChainPath scp) {
-        neScp.setUuid(UuidUtils.createUuid());
+        neScp.setUuid(scp.getUuid());
         neScp.setName("tenantName");
         neScp.setDescription(scp.getDescription());
         neScp.setSymmetric(scp.getSymmetric());

@@ -89,25 +89,28 @@ public class ServiceChainSbiImpl implements ServiceChainSbiService {
 
         if(response.getStatus() == HttpCode.NOT_FOUND) {
             return new ResultRsp<NetServiceChainPathRsp>(ErrorCode.RESTFUL_COMMUNICATION_FAILED, null, null,
-                    "connect to os controller failed", "connect to os controller failed, please check");
+                    "Connect to os controller failed", "Connect to os controller failed, please check");
         }
 
-        String rspContent = ResponseUtils.transferResponse(response);
+        ResponseUtils.transferResponse(response);
 
-        return JsonUtil.fromJson(rspContent, new TypeReference<ResultRsp<NetServiceChainPathRsp>>() {});
+        return new ResultRsp<NetServiceChainPathRsp>(ErrorCode.OVERLAYVPN_SUCCESS);
     }
 
     private ResultRsp<NetServiceChainPathRsp> getResultRspFromResponse(RestfulResponse response,
             NetServiceChainPath sfp) {
         try {
             String content = ResponseUtils.transferResponse(response);
-            ResultRsp<NetServiceChainPathRsp> resultObj =
-                    JsonUtil.fromJson(content, new TypeReference<ResultRsp<NetServiceChainPathRsp>>() {});
+            Map<String, NetServiceChainPathRsp> netServiceChainPathRspMap =
+                    JsonUtil.fromJson(content, new TypeReference<Map<String, NetServiceChainPathRsp>>() {});
+
+            ResultRsp<NetServiceChainPathRsp> resultObj = new ResultRsp<NetServiceChainPathRsp>();
+            resultObj.setData(netServiceChainPathRspMap.get(SERVICE_CHAIN_PATH_KEY));
             LOGGER.info("ServiceFunctionPath. ServiceChainSvcImpl operation finish, result = " + resultObj.toString());
 
             return resultObj;
         } catch(ServiceException e) {
-            LOGGER.error("ServiceFunctionPath except information: ", e);
+            LOGGER.error("ServiceFunctionPath exception information: ", e);
             return new ResultRsp<NetServiceChainPathRsp>(e.getId(), e.getExceptionArgs());
         }
     }
