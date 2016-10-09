@@ -1,0 +1,14 @@
+{
+  "serviceName": "sdnoservicechain",
+  "version": "v1",
+  "url": "/openoapi/sdnoservicechain/v1",
+  "protocol": "REST",
+  "visualRange": "1",
+  "nodes": [
+    {
+      "ip": "",
+      "port": "8521",
+      "ttl": 0
+    }
+  ]
+}
