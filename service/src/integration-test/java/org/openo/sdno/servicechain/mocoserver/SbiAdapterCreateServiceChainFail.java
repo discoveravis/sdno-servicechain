@@ -25,6 +25,12 @@ import org.openo.sdno.testframework.http.model.HttpRquestResponse;
 import org.openo.sdno.testframework.moco.MocoHttpServer;
 import org.openo.sdno.testframework.moco.responsehandler.MocoResponseHandler;
 
+/**
+ * SbiAdapterCreateServiceChainFail test class.<br>
+ * 
+ * @author
+ * @version SDNO 0.5 August 22, 2016
+ */
 public class SbiAdapterCreateServiceChainFail extends MocoHttpServer {
 
     private int status = 500;

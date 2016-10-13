@@ -28,6 +28,12 @@ import org.openo.sdno.testframework.http.model.HttpRequest;
 import org.openo.sdno.testframework.http.model.HttpResponse;
 import org.openo.sdno.testframework.restclient.HttpRestClient;
 
+/**
+ * HttpRest test class.<br>
+ * 
+ * @author
+ * @version SDNO 0.5 August 22, 2016
+ */
 public class HttpRest {
 
     public static RestfulResponse doSend(HttpRequest request) throws ServiceException {

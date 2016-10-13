@@ -33,6 +33,12 @@ import org.openo.sdno.testframework.http.model.HttpRquestResponse;
 import org.openo.sdno.testframework.replace.PathReplace;
 import org.openo.sdno.testframework.testmanager.TestManager;
 
+/**
+ * DeleteServiceChainFail test class.<br>
+ * 
+ * @author
+ * @version SDNO 0.5 August 22, 2016
+ */
 public class DeleteServiceChainFail extends TestManager {
 
     private SbiAdapterSuccessServer sbiAdapterServer1 = new SbiAdapterSuccessServer();

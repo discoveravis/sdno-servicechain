@@ -42,7 +42,7 @@ import net.sf.json.JSONObject;
  * </p>
  * 
  * @author
- * @version SDNO 0.5 Aug 22, 2016
+ * @version SDNO 0.5 August 22, 2016
  */
 public class ServiceChainReqDbOper {
 
@@ -124,7 +124,7 @@ public class ServiceChainReqDbOper {
     /**
      * It is used to query the original data. <br>
      * 
-     * @param serviceChainId serviceChain uuid
+     * @param serviceChainId serviceChain UUID
      * @return The object of OverlayVpn
      * @throws ServiceException When query failed
      * @since SDNO 0.5
@@ -144,7 +144,7 @@ public class ServiceChainReqDbOper {
     /**
      * It is used to delete the original data. <br>
      * 
-     * @param serviceChainId serviceChainId uuid
+     * @param serviceChainId serviceChainId UUID
      * @throws ServiceException When delete failed.
      * @since SDNO 0.5
      */

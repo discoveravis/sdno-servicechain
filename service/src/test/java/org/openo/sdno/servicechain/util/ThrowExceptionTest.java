@@ -24,6 +24,12 @@ import org.junit.Test;
 import org.openo.baseservice.remoteservice.exception.ServiceException;
 import org.openo.sdno.exception.HttpCode;
 
+/**
+ * ThrowException test class.<br>
+ * 
+ * @author
+ * @version SDNO 0.5 August 22, 2016
+ */
 public class ThrowExceptionTest {
 
     @Before
@@ -38,7 +44,6 @@ public class ThrowExceptionTest {
             assertTrue(false);
         } catch(ServiceException e) {
             assertEquals(HttpCode.ERR_FAILED, e.getHttpCode());
-
         }
     }
 

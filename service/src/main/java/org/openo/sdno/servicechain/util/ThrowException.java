@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
  * </p>
  * 
  * @author
- * @version SDNO 0.5 Aug 22, 2016
+ * @version SDNO 0.5 August 22, 2016
  */
 public class ThrowException {
 

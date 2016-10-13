@@ -47,7 +47,7 @@ import org.springframework.stereotype.Service;
  * </p>
  * 
  * @author
- * @version SDNO 0.5 Aug 23, 2016
+ * @version SDNO 0.5 August 23, 2016
  */
 @Service
 public class ServiceChainSvcImpl implements ServiceChainService {

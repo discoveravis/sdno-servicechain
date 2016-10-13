@@ -53,7 +53,7 @@ import org.springframework.stereotype.Service;
  * The rest interface of ServiceChain. <br>
  * 
  * @author
- * @version SDNO 0.5 Jun 16, 2016
+ * @version SDNO 0.5 June 16, 2016
  */
 @Service
 @Path("/sdnoservicechain/v1/paths")

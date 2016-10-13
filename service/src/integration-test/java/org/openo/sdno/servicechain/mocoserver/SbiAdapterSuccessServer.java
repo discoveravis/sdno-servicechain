@@ -27,6 +27,12 @@ import org.openo.sdno.testframework.http.model.HttpRquestResponse;
 import org.openo.sdno.testframework.moco.MocoHttpServer;
 import org.openo.sdno.testframework.moco.responsehandler.MocoResponseHandler;
 
+/**
+ * SbiAdapterSuccessServer test class.<br>
+ * 
+ * @author
+ * @version SDNO 0.5 August 22, 2016
+ */
 public class SbiAdapterSuccessServer extends MocoHttpServer {
 
     private static final String CREATE_SERVICECHAIN_SUCCESS_SBI_FILE =

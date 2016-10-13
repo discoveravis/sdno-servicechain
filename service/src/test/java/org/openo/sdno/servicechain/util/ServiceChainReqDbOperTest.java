@@ -30,6 +30,12 @@ import org.openo.sdno.servicechain.model.ServiceChainReqModelInfo;
 import mockit.Mock;
 import mockit.MockUp;
 
+/**
+ * ServiceChainReqDbOper test class.<br>
+ * 
+ * @author
+ * @version SDNO 0.5 August 22, 2016
+ */
 public class ServiceChainReqDbOperTest {
 
     @Before

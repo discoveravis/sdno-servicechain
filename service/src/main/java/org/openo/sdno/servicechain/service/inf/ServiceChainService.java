@@ -31,7 +31,7 @@ import org.openo.sdno.overlayvpn.result.ResultRsp;
  * </p>
  * 
  * @author
- * @version SDNO 0.5 Aug 23, 2016
+ * @version SDNO 0.5 August 23, 2016
  */
 public interface ServiceChainService extends IService {
 
@@ -53,7 +53,7 @@ public interface ServiceChainService extends IService {
      * 
      * @param req HttpServletRequest Object
      * @param resp HttpServletResponse Object
-     * @param uuid The uuid of ServiceFunctionPath
+     * @param uuid The UUID of ServiceFunctionPath
      * @return The object of ResultRsp
      * @throws ServiceException When delete ServiceFunctionPath failed
      * @since SDNO 0.5

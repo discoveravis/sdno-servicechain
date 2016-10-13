@@ -28,6 +28,12 @@ import org.openo.sdno.servicechain.util.ServiceChainReqDbOper;
 import mockit.Mock;
 import mockit.MockUp;
 
+/**
+ * ServiceChainSvcRoaResource test class.<br>
+ * 
+ * @author
+ * @version SDNO 0.5 August 22, 2016
+ */
 public class ServiceChainSvcRoaResourceTest {
 
     @Before

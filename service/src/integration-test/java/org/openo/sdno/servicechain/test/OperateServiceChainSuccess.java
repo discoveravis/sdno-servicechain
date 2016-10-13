@@ -32,6 +32,12 @@ import org.openo.sdno.testframework.http.model.HttpRquestResponse;
 import org.openo.sdno.testframework.replace.PathReplace;
 import org.openo.sdno.testframework.testmanager.TestManager;
 
+/**
+ * OperateServiceChainSuccess test class.<br>
+ * 
+ * @author
+ * @version SDNO 0.5 August 22, 2016
+ */
 public class OperateServiceChainSuccess extends TestManager {
 
     private static SbiAdapterSuccessServer sbiAdapterServer = new SbiAdapterSuccessServer();
