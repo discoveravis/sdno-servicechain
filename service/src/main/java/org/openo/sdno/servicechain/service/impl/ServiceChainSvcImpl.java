@@ -43,8 +43,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * ServiceChain service implements class.<br>
- * <p>
- * </p>
  * 
  * @author
  * @version SDNO 0.5 August 23, 2016
@@ -95,7 +93,7 @@ public class ServiceChainSvcImpl implements ServiceChainService {
         NetServiceChainDataDbOper.update(uuid, ActionStatus.DELETE_EXCEPTION.getName());
 
         // call the service method to perform delete operation
-        ResultRsp<NetServiceChainPathRsp> resultRsp = serviceChainSbiService.delete(req, resp, uuid);
+        ResultRsp<NetServiceChainPathRsp> resultRsp = serviceChainSbiService.delete(req, resp,  uuid, sfp);
 
         ThrowException.checkRspThrowException(resultRsp);
 

@@ -34,7 +34,7 @@ import org.openo.sdno.overlayvpn.result.ResultRsp;
 public interface ServiceChainSbiService extends IService {
 
     /**
-     * Create service chain operation. <br>
+     * Create service chain operation.<br>
      * 
      * @param req HttpServletRequest Object
      * @param resp HttpServletResponse Object
@@ -51,11 +51,12 @@ public interface ServiceChainSbiService extends IService {
      * 
      * @param req HttpServletRequest Object
      * @param resp HttpServletResponse Object
-     * @param uuid The UUID of ServiceFunctionPath
+     * @param uuid SBI ServiceChainPath uuid
+     * @param sfp NetServiceChainPath data need to delete
      * @return The object of ResultRsp
      * @throws ServiceException When delete ServiceFunctionPath failed
      * @since SDNO 0.5
      */
-    ResultRsp<NetServiceChainPathRsp> delete(HttpServletRequest req, HttpServletResponse resp, String uuid)
+    ResultRsp<NetServiceChainPathRsp> delete(HttpServletRequest req, HttpServletResponse resp, String uuid, NetServiceChainPath sfp)
             throws ServiceException;
 }

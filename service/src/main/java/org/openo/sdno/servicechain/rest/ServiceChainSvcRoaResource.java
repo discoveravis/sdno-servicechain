@@ -113,6 +113,7 @@ public class ServiceChainSvcRoaResource {
         if(ServiceChainReqDbOper.checkRecordIsExisted(sfpUuid)) {
             ThrowException.throwUuidIsExisted(sfpUuid);
         }
+
         // save the request data
         ServiceChainReqDbOper.insert(serviceChainPath);
         // update actionState to exception firstly
