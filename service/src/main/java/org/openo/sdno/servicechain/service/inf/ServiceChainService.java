@@ -27,8 +27,6 @@ import org.openo.sdno.overlayvpn.result.ResultRsp;
 
 /**
  * ServiceChainService interface.<br>
- * <p>
- * </p>
  * 
  * @author
  * @version SDNO 0.5 Aug 23, 2016

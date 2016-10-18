@@ -23,6 +23,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.codehaus.jackson.type.TypeReference;
 import org.openo.baseservice.remoteservice.exception.ServiceException;
 import org.openo.baseservice.roa.util.restclient.RestfulParametes;
@@ -30,6 +31,8 @@ import org.openo.baseservice.roa.util.restclient.RestfulResponse;
 import org.openo.sdno.exception.HttpCode;
 import org.openo.sdno.framework.container.resthelper.RestfulProxy;
 import org.openo.sdno.framework.container.util.JsonUtil;
+import org.openo.sdno.overlayvpn.brs.invdao.NetworkElementInvDao;
+import org.openo.sdno.overlayvpn.brs.model.NetworkElementMO;
 import org.openo.sdno.overlayvpn.errorcode.ErrorCode;
 import org.openo.sdno.overlayvpn.model.netmodel.servicechain.NetServiceChainPath;
 import org.openo.sdno.overlayvpn.model.netmodel.servicechain.NetServiceChainPathRsp;
@@ -41,8 +44,6 @@ import org.slf4j.LoggerFactory;
 
 /**
  * ServiceChainSbiSvc class.<br>
- * <p>
- * </p>
  * 
  * @author
  * @version SDNO 0.5 Aug 24, 2016
@@ -55,12 +56,15 @@ public class ServiceChainSbiImpl implements ServiceChainSbiService {
 
     private static final String SERVICE_CHAIN_PATH_KEY = "serviceChainPath";
 
+    private static final String X_DRIVER_PARAMETER = "X-Driver-Parameter";
+
     @Override
     public ResultRsp<NetServiceChainPathRsp> create(HttpServletRequest req, HttpServletResponse resp,
             NetServiceChainPath sfp) throws ServiceException {
 
         RestfulParametes restfulParametes = new RestfulParametes();
         restfulParametes.putHttpContextHeader("Content-Type", "application/json;charset=UTF-8");
+        restfulParametes.putHttpContextHeader(X_DRIVER_PARAMETER, "extSysID=" + getControllerIdByNe(sfp.getScfNeId()));
 
         Map<String, NetServiceChainPath> netServiceChainPathMap = new HashMap<String, NetServiceChainPath>();
         netServiceChainPathMap.put(SERVICE_CHAIN_PATH_KEY, sfp);
@@ -77,11 +81,12 @@ public class ServiceChainSbiImpl implements ServiceChainSbiService {
     }
 
     @Override
-    public ResultRsp<NetServiceChainPathRsp> delete(HttpServletRequest req, HttpServletResponse resp, String uuid)
-            throws ServiceException {
+    public ResultRsp<NetServiceChainPathRsp> delete(HttpServletRequest req, HttpServletResponse resp, String uuid,
+            NetServiceChainPath sfp) throws ServiceException {
 
         RestfulParametes restfulParametes = new RestfulParametes();
         restfulParametes.putHttpContextHeader("Content-Type", "application/json;charset=UTF-8");
+        restfulParametes.putHttpContextHeader(X_DRIVER_PARAMETER, "extSysID=" + getControllerIdByNe(sfp.getScfNeId()));
 
         String url = MessageFormat.format(SERVICECHAIN_ADAPTER_BASE_URL + "/{0}", uuid);
 
@@ -113,5 +118,18 @@ public class ServiceChainSbiImpl implements ServiceChainSbiService {
             LOGGER.error("ServiceFunctionPath exception information: ", e);
             return new ResultRsp<NetServiceChainPathRsp>(e.getId(), e.getExceptionArgs());
         }
+    }
+
+    private String getControllerIdByNe(String neId) throws ServiceException {
+
+        NetworkElementInvDao neInvDao = new NetworkElementInvDao();
+        NetworkElementMO curNetworkElement = neInvDao.query(neId);
+
+        if(null == curNetworkElement || CollectionUtils.isEmpty(curNetworkElement.getControllerID())) {
+            LOGGER.error("Cur NetworkElement does not exist or it has no controller");
+            throw new ServiceException("Cur NetworkElement does not exist or it has no controller");
+        }
+
+        return curNetworkElement.getControllerID().get(0);
     }
 }
