@@ -108,7 +108,7 @@ public class ServiceChainSvcImpl implements ServiceChainService {
 
     private void buildNetServiceChainPath(NetServiceChainPath neScp, ServiceChainPath scp) {
         neScp.setUuid(scp.getUuid());
-        neScp.setName("tenantName");
+        neScp.setName(scp.getName());
         neScp.setDescription(scp.getDescription());
         neScp.setSymmetric(scp.getSymmetric());
         neScp.setTransportType(scp.getTransportType());
