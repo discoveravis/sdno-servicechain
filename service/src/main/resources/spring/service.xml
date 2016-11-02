@@ -33,6 +33,7 @@
         <!-- registering beans -->
         <jaxrs:serviceBeans>
             <ref bean="serviceChainSvcRoaResource"></ref>
+            <ref bean="swaggerRoa"></ref>
         </jaxrs:serviceBeans>
         <!-- registering providers -->
         <jaxrs:providers>
@@ -48,7 +49,7 @@
     <bean id="serviceChainSvcRoaResource" class="org.openo.sdno.servicechain.rest.ServiceChainSvcRoaResource">
         <property name="serviceChainService" ref="serviceChainService"></property>
     </bean>
-
+    <bean id="swaggerRoa" class="org.openo.sdno.servicechain.rest.SwaggerRoa"></bean>
     <bean id="serviceChainRestModule" class="org.openo.sdno.servicechain.ServiceChainRestModule" init-method="start"
         destroy-method="stop">
     </bean>
