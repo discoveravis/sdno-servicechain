@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Huawei Technologies Co., Ltd.
+ * Copyright 2016-2017 Huawei Technologies Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,5 +57,18 @@ public interface ServiceChainService extends IService {
      * @since SDNO 0.5
      */
     ResultRsp<ServiceChainPathRsp> delete(HttpServletRequest req, HttpServletResponse resp, String uuid)
+            throws ServiceException;
+
+    /**
+     * Query ServiceChainPath.<br>
+     * 
+     * @param req HttpServletRequest Object
+     * @param resp HttpServletResponse Object
+     * @param uuid ServiceChainPath Uuid
+     * @return ServiceChainPath queried out
+     * @throws ServiceException when query failed
+     * @since SDNO 0.5
+     */
+    ResultRsp<ServiceChainPath> query(HttpServletRequest req, HttpServletResponse resp, String uuid)
             throws ServiceException;
 }

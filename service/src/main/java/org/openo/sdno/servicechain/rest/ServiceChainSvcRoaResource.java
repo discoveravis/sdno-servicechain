@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Huawei Technologies Co., Ltd.
+ * Copyright 2016-2017 Huawei Technologies Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -72,6 +73,30 @@ public class ServiceChainSvcRoaResource {
 
     public void setServiceChainService(ServiceChainService serviceChainService) {
         this.serviceChainService = serviceChainService;
+    }
+
+    /**
+     * Query ServiceChainPath.<br>
+     * 
+     * @param req HttpServletRequest Object
+     * @param resp HttpServletResponse Object
+     * @param uuid ServiceChainPath Uuid
+     * @return ServiceChainPath queried out
+     * @throws ServiceException when query failed
+     * @since SDNO 0.5
+     */
+    @GET
+    @Path("/{uuid}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public ServiceChainPath query(@Context HttpServletRequest req, @Context HttpServletResponse resp,
+            @PathParam("uuid") String uuid) throws ServiceException {
+        ResultRsp<ServiceChainPath> queryResultRsp = serviceChainService.query(req, resp, uuid);
+        if(!queryResultRsp.isValid()) {
+            LOGGER.error("ServiceChainPath query failed or does not exist");
+            throw new ServiceException("ServiceChainPath query failed or does not exist");
+        }
+        return queryResultRsp.getData();
     }
 
     /**

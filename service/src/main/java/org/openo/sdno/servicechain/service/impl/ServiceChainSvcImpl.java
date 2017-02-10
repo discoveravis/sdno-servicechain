@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Huawei Technologies Co., Ltd.
+ * Copyright 2016-2017 Huawei Technologies Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,6 +38,7 @@ import org.openo.sdno.overlayvpn.result.ResultRsp;
 import org.openo.sdno.servicechain.sbi.inf.ServiceChainSbiService;
 import org.openo.sdno.servicechain.service.inf.ServiceChainService;
 import org.openo.sdno.servicechain.util.NetServiceChainDataDbOper;
+import org.openo.sdno.servicechain.util.ServiceChainReqDbOper;
 import org.openo.sdno.servicechain.util.ThrowException;
 import org.springframework.stereotype.Service;
 
@@ -93,13 +94,20 @@ public class ServiceChainSvcImpl implements ServiceChainService {
         NetServiceChainDataDbOper.update(uuid, ActionStatus.DELETE_EXCEPTION.getName());
 
         // call the service method to perform delete operation
-        ResultRsp<NetServiceChainPathRsp> resultRsp = serviceChainSbiService.delete(req, resp,  uuid, sfp);
+        ResultRsp<NetServiceChainPathRsp> resultRsp = serviceChainSbiService.delete(req, resp, uuid, sfp);
 
         ThrowException.checkRspThrowException(resultRsp);
 
         NetServiceChainDataDbOper.delete(uuid);
 
         return new ResultRsp<ServiceChainPathRsp>(ErrorCode.OVERLAYVPN_SUCCESS);
+    }
+
+    @Override
+    public ResultRsp<ServiceChainPath> query(HttpServletRequest req, HttpServletResponse resp, String uuid)
+            throws ServiceException {
+        ServiceChainPath sfp = ServiceChainReqDbOper.query(uuid);
+        return new ResultRsp<ServiceChainPath>(ErrorCode.OVERLAYVPN_SUCCESS, sfp);
     }
 
     public void setServiceChainSbiService(ServiceChainSbiService serviceChainSbiService) {
