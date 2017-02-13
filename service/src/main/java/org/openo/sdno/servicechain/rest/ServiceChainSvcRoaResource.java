@@ -32,6 +32,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpStatus;
 import org.codehaus.jackson.type.TypeReference;
 import org.openo.baseservice.remoteservice.exception.ServiceException;
 import org.openo.baseservice.util.RestUtils;
@@ -57,7 +58,7 @@ import org.springframework.stereotype.Service;
  * @version SDNO 0.5 June 16, 2016
  */
 @Service
-@Path("/sdnoservicechain/v1/paths")
+@Path("/sdnoservicechain/v1")
 public class ServiceChainSvcRoaResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceChainSvcRoaResource.class);
@@ -76,6 +77,23 @@ public class ServiceChainSvcRoaResource {
     }
 
     /**
+     * Rest interface to perform health checking operation. <br>
+     * 
+     * @param req HttpServletRequest Object
+     * @param resp HttpServletResponse Object
+     * @throws ServiceException When check health failed
+     * @since SDNO 0.5
+     */
+    @GET
+    @Path("/healthcheck")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public void healthCheck(@Context HttpServletRequest req, @Context HttpServletResponse resp)
+            throws ServiceException {
+        resp.setStatus(HttpStatus.SC_OK);
+    }
+
+    /**
      * Query ServiceChainPath.<br>
      * 
      * @param req HttpServletRequest Object
@@ -86,7 +104,7 @@ public class ServiceChainSvcRoaResource {
      * @since SDNO 0.5
      */
     @GET
-    @Path("/{uuid}")
+    @Path("/paths/{uuid}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public ServiceChainPath query(@Context HttpServletRequest req, @Context HttpServletResponse resp,
@@ -109,6 +127,7 @@ public class ServiceChainSvcRoaResource {
      * @since SDNO 0.5
      */
     @POST
+    @Path("/paths")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public ResultRsp<ServiceChainPathRsp> create(@Context HttpServletRequest req, @Context HttpServletResponse resp)
@@ -173,7 +192,7 @@ public class ServiceChainSvcRoaResource {
      * @since SDNO 0.5
      */
     @DELETE
-    @Path("/{uuid}")
+    @Path("/paths/{uuid}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public ResultRsp<ServiceChainPathRsp> delete(@Context HttpServletRequest req, @Context HttpServletResponse resp,
