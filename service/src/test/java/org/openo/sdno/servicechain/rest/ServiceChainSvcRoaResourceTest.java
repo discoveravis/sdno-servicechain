@@ -17,6 +17,7 @@
 package org.openo.sdno.servicechain.rest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -76,6 +77,43 @@ public class ServiceChainSvcRoaResourceTest {
     public void setUp() throws Exception {
         new MockInventoryDao();
         new MockRestfulProxy();
+    }
+
+    @Test
+    public void testHealthCheckSuccess() throws ServiceException {
+
+        try {
+            serviceChainSvc.healthCheck(request, response);
+            assertTrue(true);
+        } catch(ServiceException e) {
+            assertTrue(false);
+        }
+    }
+
+    @Test
+    public void testQuery() throws ServiceException {
+        new MockUp<InventoryDao<T>>() {
+
+            @Mock
+            ResultRsp queryByFilter(Class clazz, String filter, String queryResultFields) throws ServiceException {
+
+                List<ServiceChainReqModelInfo> serviceChainReqModelInfoList = new ArrayList<>();
+                ServiceChainReqModelInfo serviceChainReqModelInfo = new ServiceChainReqModelInfo();
+                serviceChainReqModelInfo.setUuid("serviceChainReqModelInfoUuid");
+                ServiceChainPath serviceChainPath = new ServiceChainPath();
+                serviceChainPath.setUuid("uuid");
+                serviceChainReqModelInfo.setData(JsonUtil.toJson(serviceChainPath));
+                serviceChainReqModelInfoList.add(serviceChainReqModelInfo);
+
+                ResultRsp<List<ServiceChainReqModelInfo>> resp = new ResultRsp<List<ServiceChainReqModelInfo>>(
+                        ErrorCode.OVERLAYVPN_SUCCESS, serviceChainReqModelInfoList);
+                return resp;
+            }
+
+        };
+
+        ServiceChainPath serviceChainPath = serviceChainSvc.query(request, response, "serviceChainReqModelInfoUuid");
+        assertEquals(serviceChainPath.getUuid(), "uuid");
     }
 
     @Test
